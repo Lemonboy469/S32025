@@ -17,7 +17,11 @@ get_datasets(
 )
 #We can go ahead and remove "filter" for now, you can filter after results are pulled
 #Set query to your search terms
-get_datasets(query = ("Chronic stress anterior cingulate cortex OR Chronic stress prefrontal cortex"))
+#make sure to name each object
+#dplyr package allows %>% use (pipeline command to add addtitional code to line)
+SearchTerms <- "Chronic stress anterior cingulate cortex OR Chronic stress prefrontal cortex"
+SearchResults_df <- get_datasets(query = SearchTerms, taxa = c('mouse', 'rat')) %>%
+select(experiment.shortName, experiment.longName
 taxa = "mouse"
 offset = 0L
 limit = 100L
@@ -25,7 +29,7 @@ sort = "+id"
 raw = getOption("gemma.raw", FALSE)
 memoised = getOption("gemma.memoised", FALSE)
 overwrite = getOption("gemma.overwrite", FALSE)
-#issues I'm running into with this is it still pulling other taxons, as well as things not in my search terms... Mehgan?
+
 #if you run 
 gemma.R::get_datasets()
 #and then hit help on the right side it explains each feature of the code.
